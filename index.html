@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Diário de Aventura</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header id="topo">
+  <h1>DIÁRIO DE AVENTURA</h1>
+  <nav>
+    <button class="link" data-acao="novo">Criar Novo Personagem</button>
+  </nav>
+</header>
+
+<main>
+  <section id="tela-lista" class="cartao" hidden>
+    <h2>Lista de Personagens</h2>
+    <p class="erro" id="aviso" role="alert"></p>
+    <div class="barra">
+      <input id="busca" type="search" placeholder="Pesquisar personagem" aria-label="Pesquisar personagem">
+      <select id="f-status" aria-label="Filtrar por status">
+        <option value="">Status: todos</option><option>Vivo</option><option>Morto</option>
+      </select>
+      <select id="f-relacao" aria-label="Filtrar por relação">
+        <option value="">Relação: todas</option><option>Aliado</option><option>Inimigo</option><option>Neutro</option><option>Duvidosa</option>
+      </select>
+    </div>
+    <ul id="lista"></ul>
+  </section>
+
+  <section id="tela-detalhe" class="cartao" hidden>
+    <div id="detalhe-conteudo"></div>
+  </section>
+
+  <section id="tela-form" class="cartao" hidden>
+    <h2 id="titulo-form">Novo personagem</h2>
+    <ol class="etapas" id="etapas"></ol>
+    <form id="form-personagem" novalidate>
+      <input type="hidden" name="id">
+      <fieldset class="etapa" data-etapa="0"><legend>Escolha a classe</legend><div class="cartoes" id="cartoes-classe"></div></fieldset>
+      <fieldset class="etapa" data-etapa="1"><legend>Escolha a raça</legend><div class="cartoes" id="cartoes-especie"></div></fieldset>
+      <fieldset class="etapa" data-etapa="2"><legend>Escolha o antecedente</legend><div class="cartoes" id="cartoes-antecedente"></div></fieldset>
+      <fieldset class="etapa" data-etapa="3">
+        <legend>Detalhes</legend>
+        <div class="grade">
+          <div>
+            <div class="foto" id="previa"><span>Sem foto</span></div>
+            <label for="foto">Foto</label>
+            <input id="foto" type="file" accept="image/*">
+          </div>
+          <div>
+            <label for="nome">Nome</label>
+            <input id="nome" name="nome" maxlength="60" required>
+            <label for="descricao">Descrição</label>
+            <textarea id="descricao" name="descricao" rows="4" maxlength="500"></textarea>
+            <div class="trio">
+              <div><label for="status">Status</label>
+                <select id="status" name="status"><option>Vivo</option><option>Morto</option></select></div>
+              <div><label for="idade">Idade</label><input id="idade" name="idade" type="number" min="0"></div>
+              <div><label for="relacao">Relação</label>
+                <select id="relacao" name="relacao"><option>Aliado</option><option>Inimigo</option><option>Neutro</option><option>Duvidosa</option></select></div>
+            </div>
+          </div>
+        </div>
+      </fieldset>
+      <p class="erro" id="erro-form" role="alert"></p>
+      <div class="acoes">
+        <button class="btn" type="button" data-acao="anterior">Cancelar</button>
+        <button class="btn" type="button" data-acao="proximo">Próximo</button>
+        <button class="btn" type="submit" id="btn-salvar" hidden>Salvar</button>
+      </div>
+    </form>
+  </section>
+</main>
+
+<script src="js/storage.js"></script>
+<script src="js/dados.js"></script>
+<script src="js/personagens.js"></script>
+<script src="js/ui.js"></script>
+</body>
+</html>
